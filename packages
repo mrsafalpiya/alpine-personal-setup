@@ -1,0 +1,140 @@
+# Base
+
+man-pages			# Basic manual pages
+mandoc				# man command
+
+doas
+vim
+git
+ncurses				# For tput in bash
+bash
+bash-completion
+pciutils			# For lspci
+intel-ucode
+dbus-x11			# for udisks
+polkit				# for udisks
+curl
+elogind
+musl-locales
+
+# Xorg utilities
+
+xclip
+xrandr
+arandr
+xsetroot
+xinput
+setxkbmap
+xdg-user-dirs
+xev
+
+# Extra utilities
+
+gotop
+tmux
+neovim
+docs				# Downloads all *-doc sub-packages of installed packages
+
+# Pulseaudio
+
+pulseaudio
+pulseaudio-alsa
+alsa-plugins-pulse
+pulsemixer
+pavucontrol
+pamixer
+
+# Fonts
+
+font-adobe-source-code-pro
+font-noto-all
+font-noto-cjk
+font-noto-extra
+font-noto-emoji
+
+# Suckless
+
+mesa-dri-intel
+
+make
+gcc
+g++
+libx11-dev
+libxft-dev
+libxinerama-dev
+libxrandr-dev
+harfbuzz-dev
+
+# Other
+
+coreutils			# For numfmt in statusbar script
+
+fzf
+fd
+zip
+unzip
+unclutter-xfixes
+tree
+highlight
+entr
+neofetch
+trash-cli
+vifm
+mpv
+mpd
+ncmpcpp
+mpc
+ffmpeg
+mediainfo
+zathura
+zathura-pdf-mupdf
+sxiv
+imagemagick
+youtube-dl
+speedtest-cli
+ripgrep
+libnotify
+dunst
+ntfs-3g
+xautolock
+flameshot
+udisks2
+axel
+redshift
+dragon
+simple-mtpfs
+xbacklight
+
+obs-studio
+gimp
+libreoffice
+cargo				# for xcolor
+libxcursor-dev		# to run custom build command for `x11`
+
+onedrive
+
+# vim note taking
+
+pandoc
+texlive-xetex
+poppler
+R
+
+# Development environment
+gdb 
+cgdb 
+python3
+py3-pip 
+nodejs 
+npm 
+yarn
+lua
+go
+gopls
+clang
+clang-extra-tools
+
+# VAAPI
+libva-intel-driver
+libva-utils			# for vainfo
+igt-gpu-tools		# intel_gpu_top

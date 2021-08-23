@@ -1,0 +1,53 @@
+#!/bin/sh
+
+account_name="safal"
+
+packages_list=$(sed "s/\s*#.*//g;/^$/d" ./packages)
+packages_num=$(printf "$packages_list" | wc -l)
+packages_oneline=$(printf "$packages_list" | tr '\n' ' ')
+
+# Setup preparation
+echo -e '\033[1mPreparing the setup...\033[0m'
+
+echo -e '\033[1mInstalling figlet\033[0m'
+apk add figlet
+
+# OpenRC rc_parallel configuration
+figlet "rc_parallel"
+cp /etc/rc.conf /etc/rc.conf-bak
+sed 's/^#rc_parallel/rc_parallel="YES"/' /etc/rc.conf-bak >/etc/rc.conf
+
+# Enable edge repositories
+figlet "Repositories Configuration"
+cp /etc/apk/repositories /etc/apk/repositories-bak
+sed 's/^http:\/\/dl-cdn.alpinelinux.org\/alpine\/v3/#&/;s/^#http:\/\/dl-cdn.alpinelinux.org\/alpine\/edge/http:\/\/dl-cdn.alpinelinux.org\/alpine\/edge/' /etc/apk/repositories-bak >/etc/apk/repositories
+
+echo -e '\033[1mUpdating system to edge repo\033[0m'
+apk update
+apk upgrade
+
+# Account setup
+adduser "$account_name"
+addgroup "$account_name" wheel
+addgroup "$account_name" video
+addgroup "$account_name" audio
+addgroup "$account_name" input
+
+# Installing required packages from ./packages file list
+figlet "Installing Packages"
+printf "Installing %s packages\n" $packages_num
+apk add $packages_oneline
+
+# xorg
+figlet "Setting Up Xorg"
+setup-xorg-base
+
+# Bash setup
+figlet "Bash Setup"
+cp /etc/passwd /etc/passwd-bak
+sed 's/\/bin\/ash$/\/bin\/bash/' /etc/passwd-bak >/etc/passwd
+
+# Doas setup
+figlet "Doas Setup"
+echo "permit :wheel" > /etc/doas.conf
+sed 's/\/bin\/ash$/\/bin\/bash/' /etc/passwd-bak >/etc/passwd
